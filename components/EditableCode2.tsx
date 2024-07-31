@@ -3,6 +3,8 @@ import { updateCode } from '@/actions/updateCode';
 import { useState, useEffect } from 'react';
 
 import { useFormState } from 'react-dom'
+import dynamic from "next/dynamic"
+const Code = dynamic(() => import('./Code'), { ssr: false })
 const initialState = {
   message: '',
   filename: '',
@@ -35,6 +37,11 @@ function EditableCode2({ initialCode = "//code goes here", initialFilename = 'co
       <textarea name="code" className='text-black bg-white' onChange={(e: any) => setValue(e.target.value)} value={value}/>
       <pre className='whitespace-pre overflow-x-auto'>Value: {value}</pre>
       <pre className='whitespace-pre overflow-x-auto'>Code: {code}</pre>
+      <Code   code={value}
+        lang="javascript"
+        theme="nord"
+        filename={filename}
+      />
       <button type="submit">Update</button>
       <div className="border border-yellow-500">{state.message}</div>
     </form>
