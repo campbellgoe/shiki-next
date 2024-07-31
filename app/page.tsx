@@ -1,10 +1,11 @@
-import Code from "@/components/Code";
 
-export default function Home() {
+import { ErrorBoundary } from "react-error-boundary";
+import EditableCode2 from "@/components/EditableCode2";
+export default async function Home() {
+  
   return (
-    <>
-      <Code
-        code={`return (// [!code ++]
+    <ErrorBoundary fallback={<div>Some error occurred</div>}>
+      <EditableCode2 initialCode={`return (
   <div className="rounded-lg bg-gradient-to-r from-sky-300 to-sky-500 p-4 !pr-0 md:p-8 lg:p-12 [&>pre]:rounded-none max-w-xl">// [!code --]
     <div className="overflow-hidden rounded-s-lg">// [!code highlight]
       <div className="flex items-center justify-between bg-gradient-to-r from-neutral-900 to-neutral-800 py-2 pl-2 pr-4 text-sm">
@@ -19,11 +20,7 @@ export default function Home() {
     </div>
   </div>
 );
-`}
-        lang="tsx"
-        theme="ayu-dark"
-        filename="app/page.tsx"
-      />
-    </>
+`}/>
+    </ErrorBoundary>
   );
 }

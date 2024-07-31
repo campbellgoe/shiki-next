@@ -70,3 +70,8 @@ body {
     }
   }
 }
+
+textarea, input,select {
+  color: black;
+  background: white;
+}
